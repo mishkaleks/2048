@@ -9,6 +9,9 @@ import Header from '../Header'
 import GameBoard from '../GameBoard'
 import Footer from '../Footer'
 
+// helpers
+import getRandomCell from '../../helpers/getRandomCell'
+
 const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
@@ -22,10 +25,20 @@ const useStyles = makeStyles(() => ({
 const App = () => {
   const classes = useStyles()
 
+  const numbers = [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
+  ]
+
+  getRandomCell(numbers)
+  getRandomCell(numbers)
+
   return (
     <div className={classes.root}>
       <Header />
-      <GameBoard />
+      <GameBoard numbers={numbers} />
       <Footer />
     </div>
   )

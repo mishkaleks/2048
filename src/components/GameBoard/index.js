@@ -1,5 +1,6 @@
 // base
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // material-ui
 import { makeStyles } from '@mui/styles'
@@ -19,28 +20,27 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const GameBoard = () => {
+const GameBoard = (props) => {
+  const { numbers } = props
   const classes = useStyles()
-
-  const fields = [
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], []
-  ]
 
   return (
     <div className={classes.root}>
       {
-        fields.map((field, index) => {
-          console.log(field)
-          return (
-            <GameCell key={index} />
-          )
+        numbers.map(row => {
+          return row.map((number, index) => {
+            return (
+              <GameCell key={index} number={number} />
+            )
+          })
         })
       }
     </div>
   )
+}
+
+GameBoard.propTypes = {
+  numbers: PropTypes.array.isRequired
 }
 
 export default GameBoard
